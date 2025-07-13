@@ -16,9 +16,16 @@ namespace HelloWorld
     /// </summary>
     public partial class MainWindow : Window
     {
+        public List<Person> people = new List<Person>();
         public MainWindow()
         {
             InitializeComponent();
+
+            people.Add(new Person { FirstName = "Tim", LastName = "Othy" });
+            people.Add(new Person { FirstName = "Joe", LastName = "Mater" });
+            people.Add(new Person { FirstName = "All", LastName = "Might" });
+
+            myComboBox.ItemsSource = people;
         }
 
         private void TextBox_TextChanged(object sender, TextChangedEventArgs e)
@@ -26,15 +33,22 @@ namespace HelloWorld
 
         }
 
-        private void Button_Click(object sender, RoutedEventArgs e)
+        private void submitButton_Click(object sender, RoutedEventArgs e)
         {
-            if (HelloButton.IsChecked == true)
+            MessageBox.Show($"Hello {firstNameText.Text}");
+        }
+    }
+
+    public class Person
+    {
+        public string FirstName { get; set; }
+        public string LastName { get; set; }
+
+        public string FullName
+        {
+            get
             {
-                MessageBox.Show("Hello World!");
-            }
-            else if (GoodbyeButton.IsChecked == true)
-            {
-                MessageBox.Show("Goodbye World!");
+                return $"{FirstName} {LastName}";
             }
         }
     }

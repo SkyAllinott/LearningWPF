@@ -5,6 +5,8 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:HelloWorld"
         mc:Ignorable="d"
+        FontSize="18" 
+        FontFamily="Arial"
         Title="Greetings" Height="450" Width="800">
     <Grid>
         <Grid.ColumnDefinitions>
@@ -13,6 +15,68 @@
             <ColumnDefinition Width="auto" />
             <ColumnDefinition Width="auto" />
             <ColumnDefinition Width="*" />  <!-- This column will take the remaining space -->
+            <ColumnDefinition Width="20" />
         </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="20" />
+            <RowDefinition Height="auto" />
+            <RowDefinition Height="auto" />
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto" />
+            <RowDefinition Height="auto" />
+            <RowDefinition Height="*" /> <!-- This row will take the remaining space -->
+            <RowDefinition Height="20" />
+        </Grid.RowDefinitions>
+
+        <TextBlock Grid.Column="1" Grid.Row="1" FontSize="36" Text="WPF Demo" Grid.ColumnSpan="3"
+                   Margin="0, 0, 0, 20"/>
+
+        <TextBlock Grid.Column="1" Grid.Row="2" FontWeight ="Bold"  Text="First Name"
+                   Margin="0, 0, 20, 0"/>
+
+        <TextBox x:Name="firstNameText" Grid.Column="2" Grid.Row="2" Width="150"/>
+
+        <ComboBox x:Name="myComboBox" Grid.Column="1" Grid.Row="3" Grid.ColumnSpan="2"
+          Margin="10">
+            <ComboBox.ItemTemplate>
+                <DataTemplate>
+                    <!-- Alternative to stack panel, can do this. Created this in 
+                    <TextBlock Text="{Binding FullName}"/>
+                    -->
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock Text="{Binding FirstName}"/>
+                        <TextBlock Text=" "/>
+                        <TextBlock Text="{Binding LastName}"/>
+                    </StackPanel>
+                </DataTemplate>
+            </ComboBox.ItemTemplate>
+        </ComboBox>
+        
+        <Button x:Name="submitButton" Content="Run Me" Grid.Column="1" Grid.Row="4"
+                Margin="10, 10, 10, 10" Grid.ColumnSpan="2" Click="submitButton_Click"/>
+
+        <!-- Stack panel will stack objects 
+        <StackPanel Orientation="Horizontal" Grid.Row="1" Grid.Column="4" Grid.ColumnSpan="6">
+            <Image MaxHeight="200" MaxWidth="200"
+                Source="C:\Sky\Learn C#\Learning WPF\HelloWorld\icon.png"/>
+            <Image MaxHeight="200" MaxWidth="200"
+                Source="C:\Sky\Learn C#\Learning WPF\HelloWorld\icon.png"/>
+        </StackPanel>
+        -->
+        
+        <!-- Alternative can use wrap panel, which will dynamically wrap. -->
+
+        <ScrollViewer Grid.Row="1" Grid.Column="4" Grid.RowSpan="6">
+            <StackPanel Orientation="Vertical">
+                <Image MaxHeight="200" MaxWidth="200"
+                    Source="C:\Sky\Learn C#\Learning WPF\HelloWorld\icon.png"/>
+                <Image MaxHeight="200" MaxWidth="200"
+                    Source="C:\Sky\Learn C#\Learning WPF\HelloWorld\icon.png"/>
+                <Image MaxHeight="200" MaxWidth="200"
+                    Source="C:\Sky\Learn C#\Learning WPF\HelloWorld\icon.png"/>
+                <Image MaxHeight="200" MaxWidth="200"
+                    Source="C:\Sky\Learn C#\Learning WPF\HelloWorld\icon.png"/>
+            </StackPanel>
+        </ScrollViewer>
     </Grid>
 </Window>
